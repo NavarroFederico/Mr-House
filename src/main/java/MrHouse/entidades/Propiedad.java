@@ -112,5 +112,4 @@ public class Propiedad {
     public void setFoto(Foto foto) {
         this.foto = foto;
     }
-
 }

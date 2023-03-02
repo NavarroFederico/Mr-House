@@ -71,4 +71,3 @@ public class InmobiliariaControlador {
         return "contacto.html";
     }
 } 
-

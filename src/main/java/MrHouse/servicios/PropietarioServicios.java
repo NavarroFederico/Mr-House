@@ -37,7 +37,6 @@ public class PropietarioServicios implements UserDetailsService {
     public void registrar(String nombre, String email, String password, String password2) throws MyException {
 
         validar(nombre, email, password, password2);
-
         Propietario propietario = new Propietario();
         propietario.setNombre(nombre);
         propietario.setEmail(email);
@@ -66,7 +65,7 @@ public class PropietarioServicios implements UserDetailsService {
             throw new MyException("No se encontró el usuario solicitado");
         }
     }
-
+    
     @Transactional
     public void eliminar(String id) throws MyException {
         if (id == null || id.isEmpty()) {
@@ -113,3 +112,4 @@ public class PropietarioServicios implements UserDetailsService {
         }
     }
 }
+

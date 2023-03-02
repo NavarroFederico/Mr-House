@@ -5,6 +5,7 @@
  */
 package MrHouse.entidades;
 
+
 import MrHouse.enumeraciones.Roles;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -24,7 +25,6 @@ import org.hibernate.annotations.GenericGenerator;
 @Entity
 @Table(name = "inmobiliaria")
 public class Inmobiliaria {
-
     @Id
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid2")
@@ -127,5 +127,4 @@ public class Inmobiliaria {
     public void setFoto(Foto foto) {
         this.foto = foto;
     }
-
 }

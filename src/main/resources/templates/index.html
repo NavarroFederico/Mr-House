@@ -63,140 +63,112 @@
   <img src="/img/Titulo.png" width="500 px" height="100 px" alt="Titulo">
 </div>
 <br></br>
-
-<div class="search-bar">
-  <div class="search-category">
-    <a href="#">
-      <span>inmuebles</span>
-      <i class="las la-angle-down"></i>
-    </a>
-    <div class="category-menu">
-      <a href="#" class="menu-item">casas</a>
-      <a href="#" class="menu-item">Departamentos</a>
+<div class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid">
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <select class="form-select" aria-label="Default select example">
+          <option value="">Inmuebles</option>
+          <option value="option1">Casas</option>
+          <option value="option2">Departamentos</option>
+          <option value="option3">Lotes</option>
+        </select>
+        <select class="form-select" aria-label="Default select example">
+          <option value="">Transaccion</option>
+          <option value="option1">Alquiler</option>
+          <option value="option2">Venta</option>
+        </select>
+        <select class="form-select" aria-label="Default select example">
+          <option value="">$ Desde: </option>
+          <option value="option1">$10.000</option>
+          <option value="option2">$20.000</option>
+          <option value="option3">$30.000</option>
+          <option value="option4">$40.000</option>
+          <option value="option5">$50.000</option>
+          <option value="option6">$60.000</option>
+          <option value="option7">$70.000</option>
+          <option value="option8">$80.000</option>
+          <option value="option10">90.000</option>
+          <option value="option11">$100.000</option>
+          <option value="option12">$200.000</option>
+          <option value="option13">$300.000</option>
+          <option value="option14">$400.000</option>
+          <option value="option15">$500.000</option>
+          <option value="option16">$600.000</option>
+          <option value="option17">$700.000</option>
+          <option value="option18">$800.000</option>
+          <option value="option19">$900.000</option>
+          <option value="option20">$1.000.000</option>
+          <option value="option21">$2.000.000</option>
+          <option value="option22">$3.000.000</option>
+          <option value="option23">$4.000.000</option>
+          <option value="option24">$5.000.000</option>
+          <option value="option25">$6.000.000</option>
+          <option value="option26">$7.000.000</option>
+          <option value="option27">$8.000.000</option>
+          <option value="option28">$9.000.000</option>
+          <option value="option29">$10.000.000</option>
+          <option value="option30">$15.000.000</option>
+          <option value="option31">$20.000.000</option>
+          <option value="option32">$25.000.000</option>
+          <option value="option33">$30.000.000</option>
+          <option value="option34">$35.000.000</option>
+          <option value="option35">$40.000.000</option>
+          <option value="option36">$45.000.000</option>
+          <option value="option37">$50.000.000</option>
+          <option value="option38">Mas...</option>
+        </select>
+        <select class="form-select" aria-label="Default select example">
+          <option value="">$ Hasta: </option>
+          <option value="option1">$10.000</option>
+          <option value="option2">$20.000</option>
+          <option value="option3">$30.000</option>
+          <option value="option4">$40.000</option>
+          <option value="option5">$50.000</option>
+          <option value="option6">$60.000</option>
+          <option value="option7">$70.000</option>
+          <option value="option8">$80.000</option>
+          <option value="option10">90.000</option>
+          <option value="option11">$100.000</option>
+          <option value="option12">$200.000</option>
+          <option value="option13">$300.000</option>
+          <option value="option14">$400.000</option>
+          <option value="option15">$500.000</option>
+          <option value="option16">$600.000</option>
+          <option value="option17">$700.000</option>
+          <option value="option18">$800.000</option>
+          <option value="option19">$900.000</option>
+          <option value="option20">$1.000.000</option>
+          <option value="option21">$2.000.000</option>
+          <option value="option22">$3.000.000</option>
+          <option value="option23">$4.000.000</option>
+          <option value="option24">$5.000.000</option>
+          <option value="option25">$6.000.000</option>
+          <option value="option26">$7.000.000</option>
+          <option value="option27">$8.000.000</option>
+          <option value="option28">$9.000.000</option>
+          <option value="option29">$10.000.000</option>
+          <option value="option30">$15.000.000</option>
+          <option value="option31">$20.000.000</option>
+          <option value="option32">$25.000.000</option>
+          <option value="option33">$30.000.000</option>
+          <option value="option34">$35.000.000</option>
+          <option value="option35">$40.000.000</option>
+          <option value="option36">$45.000.000</option>
+          <option value="option37">$50.000.000</option>
+          <option value="option38">Mas...</option>
+        </select>
+      </ul>
+      <form class="d-flex" role="search">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-dark fas fa-search" type="submit"></button>
+      </form>
     </div>
   </div>
-  <div class="search-category">
-    <a href="#">
-      <span>Transaccion</span>
-      <i class="las la-angle-down"></i>
-    </a>
-    <div class="category-menu">
-      <a href="#" class="menu-item">Venta</a>
-      <a href="#" class="menu-item">Alquiler</a>
-    </div>
-  </div>
-  <div class="search-category">
-    <a href="#">
-      <span>$ Desde:</span>
-      <i class="las la-angle-down"></i>
-    </a>
-    <div class="category-menu">
-      <a href="#" class="menu-item">$10.000</a>
-      <a href="#" class="menu-item">$20.000</a>
-      <a href="#" class="menu-item">$30.000</a>
-      <a href="#" class="menu-item">$40.000</a>
-      <a href="#" class="menu-item">$50.000</a>
-      <a href="#" class="menu-item">$60.000</a>
-      <a href="#" class="menu-item">$70.000</a>
-      <a href="#" class="menu-item">$80.000</a>
-      <a href="#" class="menu-item">$90.000</a>
-      <a href="#" class="menu-item">$100.000</a>
-      <a href="#" class="menu-item">$200.000</a>
-      <a href="#" class="menu-item">$300.000</a>
-      <a href="#" class="menu-item">$400.000</a>
-      <a href="#" class="menu-item">$500.000</a>
-      <a href="#" class="menu-item">$600.000</a>
-      <a href="#" class="menu-item">$700.000</a>
-      <a href="#" class="menu-item">$800.000</a>
-      <a href="#" class="menu-item">$900.000</a>
-      <a href="#" class="menu-item">$1.000.000</a>
-      <a href="#" class="menu-item">$2.000.000</a>
-      <a href="#" class="menu-item">$3.000.000</a>
-      <a href="#" class="menu-item">$4.000.000</a>
-      <a href="#" class="menu-item">$5.000.000</a>
-      <a href="#" class="menu-item">$6.000.000</a>
-      <a href="#" class="menu-item">$7.000.000</a>
-      <a href="#" class="menu-item">$8.000.000</a>
-      <a href="#" class="menu-item">$9.000.000</a>
-      <a href="#" class="menu-item">$10.000.000</a>
-      <a href="#" class="menu-item">$15.000.000</a>
-      <a href="#" class="menu-item">$20.000.000</a>
-      <a href="#" class="menu-item">$25.000.000</a>
-      <a href="#" class="menu-item">$30.000.000</a>
-      <a href="#" class="menu-item">$35.000.000</a>
-      <a href="#" class="menu-item">$40.000.000</a>
-      <a href="#" class="menu-item">$45.000.000</a>
-      <a href="#" class="menu-item">$50.000.000</a>
-    </div>
-  </div>
-  <div class="search-category">
-    <a href="#">
-      <span>$ Hasta:</span>
-      <i class="las la-angle-down"></i>
-    </a>
-    <div class="category-menu">
-      <a href="#" class="menu-item">$10.000</a>
-      <a href="#" class="menu-item">$20.000</a>
-      <a href="#" class="menu-item">$30.000</a>
-      <a href="#" class="menu-item">$40.000</a>
-      <a href="#" class="menu-item">$50.000</a>
-      <a href="#" class="menu-item">$60.000</a>
-      <a href="#" class="menu-item">$70.000</a>
-      <a href="#" class="menu-item">$80.000</a>
-      <a href="#" class="menu-item">$90.000</a>
-      <a href="#" class="menu-item">$100.000</a>
-      <a href="#" class="menu-item">$200.000</a>
-      <a href="#" class="menu-item">$300.000</a>
-      <a href="#" class="menu-item">$400.000</a>
-      <a href="#" class="menu-item">$500.000</a>
-      <a href="#" class="menu-item">$600.000</a>
-      <a href="#" class="menu-item">$700.000</a>
-      <a href="#" class="menu-item">$800.000</a>
-      <a href="#" class="menu-item">$900.000</a>
-      <a href="#" class="menu-item">$1.000.000</a>
-      <a href="#" class="menu-item">$2.000.000</a>
-      <a href="#" class="menu-item">$3.000.000</a>
-      <a href="#" class="menu-item">$4.000.000</a>
-      <a href="#" class="menu-item">$5.000.000</a>
-      <a href="#" class="menu-item">$6.000.000</a>
-      <a href="#" class="menu-item">$7.000.000</a>
-      <a href="#" class="menu-item">$8.000.000</a>
-      <a href="#" class="menu-item">$9.000.000</a>
-      <a href="#" class="menu-item">$10.000.000</a>
-      <a href="#" class="menu-item">$15.000.000</a>
-      <a href="#" class="menu-item">$20.000.000</a>
-      <a href="#" class="menu-item">$25.000.000</a>
-      <a href="#" class="menu-item">$30.000.000</a>
-      <a href="#" class="menu-item">$35.000.000</a>
-      <a href="#" class="menu-item">$40.000.000</a>
-      <a href="#" class="menu-item">$45.000.000</a>
-      <a href="#" class="menu-item">$50.000.000</a>
-    </div>
-  </div>
-  <label class="input-search">
-    <input type="text" placeholder="Search Your Item" />
-    <div class="search-menu">
-      <div class="search-related">
-        <a href="#">
-          <span>Buenos Aires</span>
-        </a>
-        <a href="#">
-          <span>Cordoba</span>
-        </a>
-        <a href="#">
-          <span>Mendoza</span>
-        </a>
-        <a href="#">
-          <span>Santa Fe</span>
-        </a>
-      </div>
-    </div>
-  </label>
-  <a href="#" class="search-btn">
-    <i class="las la-search"></i>
-  </a>
 </div>
+
+<script src="./js/searchbar.js"></script>
 </body>
-   
+</html>
 
 
