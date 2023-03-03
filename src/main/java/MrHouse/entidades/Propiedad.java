@@ -9,7 +9,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import org.hibernate.annotations.GenericGenerator;
@@ -28,11 +27,14 @@ public class Propiedad {
     private String id;
     
     @Column(unique = true)
+    private String m2;
     private String habitaciones;
+    private String banos;
     private String direccion;
     private String ciudad;
     
-   
+    private String descripcion;
+    
     @OneToOne
     private Foto foto;
     @OneToOne
@@ -46,6 +48,30 @@ public class Propiedad {
 
     public void setId(String id) {
         this.id = id;
+    }
+    
+    public String getM2() {
+        return m2;
+    }
+
+    public void setM2(String m2) {
+        this.m2 = m2;
+    }
+
+    public String getBanos() {
+        return banos;
+    }
+
+    public void setBanos(String baños) {
+        this.banos = baños;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
 
     public String getHabitaciones() {
@@ -95,7 +121,5 @@ public class Propiedad {
     public void setFoto(Foto foto) {
         this.foto = foto;
     }
-    
-    
-    
+            
 }
