@@ -4,7 +4,6 @@
 .titulos{
     text-align: center;
 }
-
   form {
     color: black;
     text-align: center;
@@ -39,7 +38,4 @@ th, td{
   text-align: center;
   border: solid 5px #FB6222;
   padding: 5;
-}
-.titulo{
-  text-align: center;
 }

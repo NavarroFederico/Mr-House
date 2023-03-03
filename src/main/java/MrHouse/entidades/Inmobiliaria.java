@@ -5,8 +5,12 @@
  */
 package MrHouse.entidades;
 
+
+import MrHouse.enumeraciones.Roles;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
@@ -21,22 +25,58 @@ import org.hibernate.annotations.GenericGenerator;
 @Entity
 @Table(name = "inmobiliaria")
 public class Inmobiliaria {
-    
     @Id
     @GeneratedValue(generator = "uuid")
-    @GenericGenerator(name = "uuid" , strategy = "uuid2")
+    @GenericGenerator(name = "uuid", strategy = "uuid2")
     private String id;
-    
+
     @Column(unique = true)
     private String nombre;
     private String ciudad;
-    
+    private String descripcion;
+    private String email;
+    private String password;
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+    @Enumerated(EnumType.STRING)
+    private Roles rol;
+
+    public Roles getRol() {
+        return rol;
+    }
+
+    public void setRol(Roles rol) {
+        this.rol = rol;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
     @OneToOne
     private Foto foto;
-    
+
     @OneToOne
     private Propiedad propiedad;
-    
+
     @OneToOne
     private Propietario propietario;
 
@@ -87,8 +127,4 @@ public class Inmobiliaria {
     public void setFoto(Foto foto) {
         this.foto = foto;
     }
-    
-    
-    
-    
 }

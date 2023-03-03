@@ -29,25 +29,23 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class PropietarioServicios implements UserDetailsService {
-    
+
     @Autowired
     PropietarioRepositorio propietarioRepositorio;
-    
+
     @Transactional
     public void registrar(String nombre, String email, String password, String password2) throws MyException {
-       
-        validar (nombre, email, password, password2);
-        
+
+        validar(nombre, email, password, password2);
         Propietario propietario = new Propietario();
         propietario.setNombre(nombre);
         propietario.setEmail(email);
         propietario.setPassword(new BCryptPasswordEncoder().encode(password));
         propietario.setRol(Roles.PROPIETARIO);
         propietarioRepositorio.save(propietario);
-        
-        
+
     }
-    
+
     @Transactional
     public void modificar(String id, String nombre, String email, String password, String password2) throws MyException {
 
@@ -79,7 +77,7 @@ public class PropietarioServicios implements UserDetailsService {
             propietarioRepositorio.delete(propietario);
         }
     }
-    
+
     private void validar(String nombre, String email, String password, String password2) throws MyException {
         if (nombre.isEmpty() || nombre == null) {
             throw new MyException("El nombre no puede ser nulo o estar vacio");
@@ -114,3 +112,4 @@ public class PropietarioServicios implements UserDetailsService {
         }
     }
 }
+
