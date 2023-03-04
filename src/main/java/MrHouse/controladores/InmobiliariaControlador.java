@@ -9,30 +9,29 @@ import MrHouse.excepciones.MyException;
 import MrHouse.servicios.InmobiliariaServicios;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  *
  * @author Ramiro
  */
+@Controller
+@RequestMapping("/inmobiliaria")
 public class InmobiliariaControlador {
        @Autowired
     private InmobiliariaServicios inmobiliariaServicios;
     
-    @GetMapping("/")
-    public String index() {
-        return "index.html";
-    }
-    
-    @GetMapping("/registrar-inm")
+    @GetMapping("/registrar")
     public String registrar() {
         return "registro.html";
     }
     
-    @PostMapping("/registro-inm")
+    @PostMapping("/registro")
     public String registro(@RequestParam String nombre , @RequestParam String email , @RequestParam String password ,
             @RequestParam String password2 , ModelMap modelo ) {
             try {
@@ -61,13 +60,4 @@ public class InmobiliariaControlador {
         return "inicio.html";
     }
     
-    @GetMapping("/tabla")
-    public String tabla() {
-        return "tabla.html";
-    }
-    
-    @GetMapping("/contacto")
-    public String contacto() {
-        return "contacto.html";
-    }
 } 

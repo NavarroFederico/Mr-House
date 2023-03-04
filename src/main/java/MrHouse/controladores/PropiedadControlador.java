@@ -5,17 +5,23 @@
  */
 package MrHouse.controladores;
 
+import MrHouse.servicios.PropiedadServicios;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
  *
  * @author facuq
  */
+@Controller
+@RequestMapping("/propiedades")
 public class PropiedadControlador {
 
     @Autowired
-
+    private PropiedadServicios propiedadServicios;
+    
     @GetMapping("/alquileres")
     public String alquileres() {
         return "alquileres.html";
