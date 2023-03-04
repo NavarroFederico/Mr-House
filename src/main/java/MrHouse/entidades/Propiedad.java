@@ -32,7 +32,6 @@ public class Propiedad {
     private String banos;
     private String direccion;
     private String ciudad;
-    
     private String descripcion;
     
     @OneToOne

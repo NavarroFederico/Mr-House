@@ -42,11 +42,11 @@ public class FotoServicios {
     }
 
     @Transactional
-    public Foto update(MultipartFile file, String id) throws MyException {
+    public Foto update(MultipartFile file, String idImagen) throws MyException {
         validar(file);
 
         try {
-            Foto foto = getImage(id);
+            Foto foto = getImage(idImagen);
             foto.setDatos(file.getBytes());
             foto.setMime(file.getContentType());
             foto.setNombre(file.getName());

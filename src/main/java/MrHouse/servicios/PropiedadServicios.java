@@ -13,20 +13,23 @@ import MrHouse.repositorios.PropiedadRepositorio;
 import java.util.Optional;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 /**
  *
  * @author facuq
  */
+@Service
 public class PropiedadServicios {
-     @Autowired
+
+    @Autowired
     PropiedadRepositorio propiedadRepositorio;
-    
+
     @Transactional
     public void registrar(String m2, String habitaciones, String banos, String descripcion, String direccion, String ciudad, Inmobiliaria inmobiliaria, Propietario propietario) throws MyException {
-       
-        validar (m2, habitaciones, banos, descripcion, direccion, ciudad, inmobiliaria, propietario);
-        
+
+        validar(m2, habitaciones, banos, descripcion, direccion, ciudad, inmobiliaria, propietario);
+
         Propiedad propiedad = new Propiedad();
         propiedad.setM2(m2);
         propiedad.setHabitaciones(habitaciones);
@@ -38,11 +41,11 @@ public class PropiedadServicios {
         propiedad.setPropietario(propietario);
         propiedadRepositorio.save(propiedad);
     }
-    
+
     @Transactional
     public void modificar(String id, String m2, String habitaciones, String banos, String descripcion, String direccion, String ciudad, Inmobiliaria inmobiliaria, Propietario propietario) throws MyException {
 
-        validar (m2, habitaciones, banos, descripcion, direccion, ciudad, inmobiliaria, propietario);
+        validar(m2, habitaciones, banos, descripcion, direccion, ciudad, inmobiliaria, propietario);
 
         Optional<Propiedad> respuesta = propiedadRepositorio.findById(id);
         if (respuesta.isPresent()) {
@@ -61,7 +64,7 @@ public class PropiedadServicios {
             throw new MyException("No se encontró la propiedad solicitada");
         }
     }
-    
+
     @Transactional
     public void eliminar(String id) throws MyException {
         if (id == null || id.isEmpty()) {
@@ -73,7 +76,7 @@ public class PropiedadServicios {
             propiedadRepositorio.delete(propiedad);
         }
     }
-    
+
     private void validar(String m2, String habitaciones, String banos, String descripcion, String direccion, String ciudad, Inmobiliaria inmobiliaria, Propietario propietario) throws MyException {
         if (m2.isEmpty() || m2 == null) {
             throw new MyException("La cantidad de metros cuadrados no puede ser nula");
