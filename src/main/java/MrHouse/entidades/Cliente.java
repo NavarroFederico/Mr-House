@@ -1,4 +1,3 @@
-
 package MrHouse.entidades;
 
 import MrHouse.enumeraciones.Roles;
@@ -17,23 +16,32 @@ import org.hibernate.annotations.GenericGenerator;
  * @author facuq
  */
 
-
 @Entity
 @Table(name = "cliente")
 public class Cliente {
-    
+
     @Id
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid2")
     private String id;
-    
+
     @Column(unique = true)
     private String nombre;
     private String password;
     private String email;
-    
+
+    private String DNI;
+
+    public String getDNI() {
+        return DNI;
+    }
+
+    public void setDNI(String DNI) {
+        this.DNI = DNI;
+    }
+
     @Enumerated(EnumType.STRING)
-    private Roles rol; 
+    private Roles rol;
     
     @OneToOne
     private Foto image;
@@ -88,7 +96,4 @@ public class Cliente {
     public void setImage(Foto image) {
         this.image = image;
     }
-    
-    
-    
 }
