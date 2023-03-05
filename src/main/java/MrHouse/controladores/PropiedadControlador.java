@@ -5,11 +5,15 @@
  */
 package MrHouse.controladores;
 
+import MrHouse.entidades.Propiedad;
+import MrHouse.excepciones.MyException;
 import MrHouse.servicios.PropiedadServicios;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  *
@@ -18,38 +22,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/propiedades")
 public class PropiedadControlador {
-    
-    @Autowired
-    
-    
-    @GetMapping("/alquileres")
-    public String alquileres() {
-        return "alquileres.html";
+
+    @GetMapping("/")
+    public String propiedades() {
+        return "propiedades.html";
     }
-    
-    @GetMapping("/ventas")
-    public String ventas() {
-        return "ventas.html";
+
+    @GetMapping("/registrar")
+    public String registro(ModelMap modelo, @RequestParam(required = false) String id) {
+
+        return "registro.html";
     }
-    
-    @GetMapping("/alquileres/casas")
-    public String aCasas() {
-        return "casas-alquiler.html";
-    }
-    
-    @GetMapping("/ventas/casas")
-    public String vCasas() {
-        return "casas-venta.html";
-    }
-    
-    @GetMapping("/alquileres/departamentos")
-    public String aDepartamentos() {
-        return "departamentos-alquiler.html";
-    }
-    
-    @GetMapping("/ventas/departamentos")
-    public String vDepartamentos() {
-        return "departamentos-ventas.html";
-    } 
-    
+
 }

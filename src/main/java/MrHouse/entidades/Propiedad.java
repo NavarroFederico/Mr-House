@@ -20,27 +20,33 @@ import org.hibernate.annotations.GenericGenerator;
 @Entity
 @Table(name = "propiedad")
 public class Propiedad {
-    
+
     @Id
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid2")
     private String id;
-    
+
     @Column(unique = true)
+    private int propiedadTipo; //1=CASA 2=DEPARTAMENTO   
     private String m2;
     private String habitaciones;
     private String banos;
+    private boolean cochera;
     private String direccion;
     private String ciudad;
-    
     private String descripcion;
-    
+
+    private boolean alta;
+
     @OneToOne
     private Foto foto;
     @OneToOne
     private Inmobiliaria inmobiliaria;
     @OneToOne
     private Propietario propietario;
+
+    public Propiedad() {
+    }
 
     public String getId() {
         return id;
@@ -49,7 +55,15 @@ public class Propiedad {
     public void setId(String id) {
         this.id = id;
     }
-    
+
+    public int getPropiedadTipo() {
+        return propiedadTipo;
+    }
+
+    public void setPropiedadTipo(int propiedadTipo) {
+        this.propiedadTipo = propiedadTipo;
+    }
+
     public String getM2() {
         return m2;
     }
@@ -121,5 +135,21 @@ public class Propiedad {
     public void setFoto(Foto foto) {
         this.foto = foto;
     }
-            
+
+    public boolean isCochera() {
+        return cochera;
+    }
+
+    public void setCochera(boolean cochera) {
+        this.cochera = cochera;
+    }
+
+    public boolean isAlta() {
+        return alta;
+    }
+
+    public void setAlta(boolean alta) {
+        this.alta = alta;
+    }
+
 }

@@ -5,9 +5,7 @@
  */
 package MrHouse.servicios;
 
-import MrHouse.entidades.Inmobiliaria;
 import MrHouse.entidades.Propiedad;
-import MrHouse.entidades.Propietario;
 import MrHouse.excepciones.MyException;
 import MrHouse.repositorios.PropiedadRepositorio;
 import java.util.Optional;
@@ -19,83 +17,166 @@ import org.springframework.beans.factory.annotation.Autowired;
  * @author facuq
  */
 public class PropiedadServicios {
-    
+
     @Autowired
     PropiedadRepositorio propiedadRepositorio;
-    
+
     @Transactional
-    public void registrar(String m2, String habitaciones, String banos, String descripcion, String direccion, String ciudad, Inmobiliaria inmobiliaria, Propietario propietario) throws MyException {
-       
-        validar (m2, habitaciones, banos, descripcion, direccion, ciudad, inmobiliaria, propietario);
-        
-        Propiedad propiedad = new Propiedad();
-        propiedad.setM2(m2);
-        propiedad.setHabitaciones(habitaciones);
-        propiedad.setBanos(banos);
-        propiedad.setDescripcion(descripcion);
-        propiedad.setDireccion(direccion);
-        propiedad.setCiudad(ciudad);
-        propiedad.setInmobiliaria(inmobiliaria);
-        propiedad.setPropietario(propietario);
-        propiedadRepositorio.save(propiedad);
+    public void registrar(Propiedad propiedadV) throws MyException {
+        //P=PERSISTIR V=VALIDAR
+        Propiedad propiedadP = validar(propiedadV);
+
+        propiedadP.setPropiedadTipo(propiedadP.getPropiedadTipo());
+        propiedadP.setM2(propiedadP.getM2());
+        propiedadP.setHabitaciones(propiedadP.getHabitaciones());
+        propiedadP.setBanos(propiedadP.getBanos());
+        propiedadP.setCochera(propiedadP.isCochera());
+        propiedadP.setDireccion(propiedadP.getDireccion());
+        propiedadP.setCiudad(propiedadP.getCiudad());
+        propiedadP.setDescripcion(propiedadP.getDescripcion());
+        propiedadP.setInmobiliaria(propiedadP.getInmobiliaria());
+        propiedadRepositorio.save(propiedadP);
     }
-    
+
+    //PropiedadP = propiedad persistida  PropiedadC = nuevos cambios
     @Transactional
-    public void modificar(String id, String m2, String habitaciones, String banos, String descripcion, String direccion, String ciudad, Inmobiliaria inmobiliaria, Propietario propietario) throws MyException {
+    public void modificar(Propiedad propiedadC) throws MyException {
+        try {
+            Propiedad propiedadP = validarCambios(propiedadC, buscarPorId(propiedadC.getId()));
 
-        validar (m2, habitaciones, banos, descripcion, direccion, ciudad, inmobiliaria, propietario);
-
-        Optional<Propiedad> respuesta = propiedadRepositorio.findById(id);
-        if (respuesta.isPresent()) {
-            Propiedad propiedad = respuesta.get();
-            propiedad.setM2(m2);
-            propiedad.setHabitaciones(habitaciones);
-            propiedad.setBanos(banos);
-            propiedad.setDescripcion(descripcion);
-            propiedad.setDireccion(direccion);
-            propiedad.setCiudad(ciudad);
-            propiedad.setInmobiliaria(inmobiliaria);
-            propiedad.setPropietario(propietario);
-            propiedadRepositorio.save(propiedad);
-        } else {
-
-            throw new MyException("No se encontró la propiedad solicitada");
+            propiedadRepositorio.save(propiedadP);
+        } catch (MyException e) {
+            throw new MyException("No se editó la propiedad");
         }
     }
-    
+
     @Transactional
-    public void eliminar(String id) throws MyException {
-        if (id == null || id.isEmpty()) {
+    public Propiedad buscarPorId(String id) throws MyException {
+        Optional<Propiedad> op = propiedadRepositorio.findById(id);
+        if (op.isPresent()) {
+            return op.get();
+        } else {
+            throw new MyException("No se encontró la propiedad solicitada.");
+        }
+    }
+
+    @Transactional
+    public void bajaPropiedad(Propiedad propiedad) throws MyException {
+
+        Optional<Propiedad> op = propiedadRepositorio.findById(propiedad.getId());
+        if (op.isPresent()) {
+            Propiedad aux = op.get();
+            aux.setAlta(Boolean.FALSE);
+            propiedadRepositorio.save(aux);
+        }
+
+    }
+
+    @Transactional
+    public void altaLibro(Propiedad propiedad) throws MyException {
+
+        Optional<Propiedad> op = propiedadRepositorio.findById(propiedad.getId());
+        if (op.isPresent()) {
+            Propiedad aux = op.get();
+            aux.setAlta(Boolean.TRUE);
+            propiedadRepositorio.save(aux);
+        }
+    }
+
+    @Transactional
+    public void eliminar(Propiedad propiedad) throws MyException {
+        if (propiedad.getId() == null || propiedad.getId().isEmpty()) {
             throw new MyException("El id esta vacio o es nulo");
         }
-        Optional<Propiedad> respuesta = propiedadRepositorio.findById(id);
-        if (respuesta.isPresent()) {
-            Propiedad propiedad = respuesta.get();
-            propiedadRepositorio.delete(propiedad);
+        Optional<Propiedad> op = propiedadRepositorio.findById(propiedad.getId());
+        if (op.isPresent()) {
+            Propiedad aux = op.get();
+            propiedadRepositorio.delete(aux);
         }
     }
-    
-    private void validar(String m2, String habitaciones, String banos, String descripcion, String direccion, String ciudad, Inmobiliaria inmobiliaria, Propietario propietario) throws MyException {
-        if (m2.isEmpty() || m2 == null) {
+
+    private Propiedad validar(Propiedad propiedad) throws MyException {
+
+        propiedad.setAlta(true);
+
+        if (propiedad.getPropiedadTipo() <= 0 || propiedad.getPropiedadTipo() >= 3) {
+            throw new MyException("El tipo de propiedad no puede ser nulo o estar vacío");
+        }
+        if (propiedad.getM2().isEmpty() || propiedad.getM2() == null) {
             throw new MyException("La cantidad de metros cuadrados no puede ser nula");
         }
-        if (habitaciones.isEmpty() || habitaciones == null) {
+        if (propiedad.getHabitaciones().isEmpty() || propiedad.getHabitaciones() == null) {
             throw new MyException("La cantidad de habitaciones no puede ser nula");
         }
-        if (banos.isEmpty() || banos == null) {
+        if (propiedad.getBanos().isEmpty() || propiedad.getBanos() == null) {
             throw new MyException("La cantidad de baños no puede ser nula");
         }
-        if (descripcion.isEmpty() || descripcion == null) {
+        if (propiedad.getDescripcion().isEmpty() || propiedad.getDescripcion() == null) {
             throw new MyException("La descripción no puede ser nula o estar vacía");
         }
-        if (direccion.isEmpty() || direccion == null) {
+        if (propiedad.getDireccion().isEmpty() || propiedad.getDireccion() == null) {
             throw new MyException("La dirección no puede ser nula o estar vacía");
         }
-        if (ciudad.isEmpty() || ciudad == null) {
+        if (propiedad.getCiudad().isEmpty() || propiedad.getCiudad() == null) {
             throw new MyException("La ciudad no puede ser nula o estar vacía");
         }
-        if (inmobiliaria.getId().isEmpty() || inmobiliaria.getId() == null) {
+        if (propiedad.getInmobiliaria().getId().isEmpty() || propiedad.getInmobiliaria().getId() == null) {
             throw new MyException("La inmobiliaria no puede ser nula o estar vacía");
         }
+
+        return propiedad;
+    }
+
+    //PropiedadP = propiedad persistida  PropiedadC = nuevos cambios
+    private Propiedad validarCambios(Propiedad propiedadP, Propiedad propiedadC) throws MyException {
+
+        if (propiedadC.getM2().equals(propiedadP.getM2())
+                && propiedadC.getPropiedadTipo() == (propiedadP.getPropiedadTipo())
+                && propiedadC.getHabitaciones().equals(propiedadP.getHabitaciones())
+                && propiedadC.getBanos().equals(propiedadP.getBanos())
+                && propiedadC.isCochera() == (propiedadP.isCochera())
+                && propiedadC.getDireccion().equals(propiedadP.getDireccion())
+                && propiedadC.getCiudad().equals(propiedadP.getCiudad())
+                && propiedadC.getDescripcion().equals(propiedadP.getDescripcion())
+                && propiedadC.getFoto().equals(propiedadP.getFoto())
+                && propiedadC.getInmobiliaria().equals(propiedadP.getInmobiliaria())
+                && propiedadC.getPropietario().equals(propiedadP.getPropietario())) {
+            throw new MyException("No existen cambios para editar");
+        }
+
+        if (propiedadC.getPropiedadTipo() != (propiedadP.getPropiedadTipo())) {
+            propiedadP.setPropiedadTipo(propiedadC.getPropiedadTipo());
+        }
+        if (!propiedadC.getM2().equals(propiedadP.getM2())) {
+            propiedadP.setHabitaciones(propiedadC.getHabitaciones());
+        }
+        if (!propiedadC.getHabitaciones().equals(propiedadP.getHabitaciones())) {
+            propiedadP.setHabitaciones(propiedadC.getHabitaciones());
+        }
+        if (!propiedadC.getBanos().equals(propiedadP.getBanos())) {
+            propiedadP.setBanos(propiedadC.getBanos());
+        }
+        if (!propiedadC.isCochera() == (propiedadP.isCochera())) {
+            propiedadP.setCochera(propiedadC.isCochera());
+        }
+        if (!propiedadC.getDireccion().equals(propiedadP.getDireccion())) {
+            propiedadP.setDireccion(propiedadC.getDireccion());
+        }
+        if (!propiedadC.getCiudad().equals(propiedadP.getCiudad())) {
+            propiedadP.setCiudad(propiedadC.getCiudad());
+        }
+        if (!propiedadC.getDescripcion().equals(propiedadP.getDescripcion())) {
+            propiedadP.setDescripcion(propiedadC.getDescripcion());
+        }
+        if (!propiedadC.getFoto().equals(propiedadP.getFoto())) {
+            propiedadP.setFoto(propiedadC.getFoto());
+        }
+        if (!propiedadC.getInmobiliaria().equals(propiedadP.getInmobiliaria())) {
+            propiedadP.setInmobiliaria(propiedadC.getInmobiliaria());
+        }
+        if (!propiedadC.getPropietario().equals(propiedadP.getPropietario())) {
+            propiedadP.setPropietario(propiedadC.getPropietario());
+        }
+        return propiedadP;
     }
 }

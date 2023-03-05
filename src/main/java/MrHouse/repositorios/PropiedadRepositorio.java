@@ -9,17 +9,13 @@ import MrHouse.entidades.Propiedad;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
-import org.springframework.stereotype.Repository;
 
 /**
  *
  * @author facuq
  */
-@Repository
-public interface PropiedadRepositorio extends JpaRepository<Propiedad, String> {
+public interface PropiedadRepositorio extends  JpaRepository<Propiedad, String> {
+    @Query("SELECT u FROM Propiedad u WHERE u.id = :id")
     
-    @Query("SELECT p FROM Propiedad p WHERE p.direccion = :direccion")
-    
-    public Propiedad buscarPorDireccion(@Param("direccion") String direccion);
-    
+    public Propiedad buscarPorID(@Param("id") String id); 
 }
