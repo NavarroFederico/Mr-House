@@ -38,8 +38,16 @@ public class PortalControlador {
     public String registrar() {
         return "registro.html";
     }
+    @GetMapping("/registrarc")
+    public String registrarc() {
+        return "registroc.html";
+    }
+    @GetMapping("/registrari")
+    public String registrari() {
+        return "registroi.html";
+    }
     
-    @PostMapping("/registro")
+    @PostMapping("/registroc")
     public String registro(@RequestParam String nombre , @RequestParam String email , @RequestParam String password ,
             @RequestParam String password2 , ModelMap modelo, MultipartFile archivo) {
             try {
@@ -50,7 +58,7 @@ public class PortalControlador {
             modelo.put("error", ex.getMessage());
             modelo.put("nombre",nombre);
             modelo.put("email",email);
-            return "registro.html";
+            return "index.html";
         }
     }
     
@@ -65,16 +73,24 @@ public class PortalControlador {
     @PreAuthorize("hasAnyRole('ROLE_INQUILINO','ROLE_ADMIN','ROLE_PROPIETARIO','ROLE_INMOBILIARIA')")
     @GetMapping("/inicio")
     public String inicio() {
-        return "inicio.html";
-    }
-    
-    @GetMapping("/tabla")
-    public String tabla() {
-        return "tabla.html";
+        return "index.html";
     }
     
     @GetMapping("/contacto")
     public String contacto() {
         return "contacto.html";
     }
+    @GetMapping("/propiedades")
+    public String propiedades() {
+        return "propiedades.html";
+    }
+    @GetMapping("/inmobiliarias")
+    public String inmobiliarias() {
+        return "inmobiliarias.html";
+    }
+    @GetMapping("/perfil")
+    public String perfil() {
+        return "perfil.html";
+    }
+    
 }

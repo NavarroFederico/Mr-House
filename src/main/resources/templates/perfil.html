@@ -40,29 +40,17 @@
   </div>
 </nav>
 <br>
-    <h3 class="text-center">Seleccione el tipo de usuario</h3>
-    <br></br>
-    <div class="container text-center">
-      <div class="row">
-        <div class="col">
-          <input type="radio" class="btn-check" name="options-outlined" id="success-outlined" autocomplete="off">
-          <label class="btn btn-outline-dark" for="success-outlined">Cliente</label>
-        <p>Si quieres consultar acerca de un inmueble publicado o publicar un inmueble particular</p>
-        </div>
-        <div class="col">
-          <input type="radio" class="btn-check" name="options-outlined" id="danger-outlined" autocomplete="off">
-          <label class="btn btn-outline-dark" for="danger-outlined">Inmobiliaria</label>
-        <p>Si eres corredor inmobiliario y te gustaría publicar tus inmuebles</p>
-        </div>
-      </div>
-    </div>
-    <br>
-    <div class="text-center">
-      <a th:href="@{/registrar}"><button class="btn btn-dark align-middle">Registrar</button></a>
-    </div>
+<h1 class="titulos">Informacion del perfil</h1>
 
 
-    <form class="form" th:action="@{/registro}" method="POST" enctype="multipart/form-data">
+
+<br>
+<h1 class="titulos">Mis publicaciones</h1>
+
+
+
+
+<form class="form" th:action="@{/registro}" method="POST" enctype="multipart/form-data">
       <div class="form-group mb-3">
         <h3 class="card-title">Registrate</h3>
       </div>
@@ -82,7 +70,7 @@
             <input type="file" class="form-control" name="imagen">
         </div>
         <div>
-            <button type="submit" class="btn btn-dark mb-3">Registrarse</button>
+            <button type="submit" class="btn btn-dark mb-3">editar</button>
         </div>
 
 
@@ -116,7 +104,8 @@
                 <input type="file" class="form-control" name="imagen">
             </div>
             <div>
-                <button type="submit" class="btn btn-dark mb-3">Registrarse</button>
+                <button type="submit" class="btn btn-dark mb-3">editar</button>
             </div>
-    </body>
+
+</body>
 </html>

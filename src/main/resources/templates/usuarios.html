@@ -39,22 +39,28 @@
     </div>
   </div>
 </nav>
-<div class="form">
-  <form action="contact.php" method="post">
-    <div class="row">
-      <div class="col">
-        <input type="text" class="form-control" placeholder="Nombre completo" required>
-      </div>
-      <div class="col">
-        <input type="email" class="form-control" placeholder="Correo electronico" required>
-      </div>
-    </div>
-    <div class="mb-3">
-      <textarea rows="10" class="form-control" placeholder="Ingrese su consulta aqui" required></textarea>
-    </div>
-    <button class="btn btn-dark" type="Reset">Limpiar formulario</button>
-    <button class="btn btn-dark" type="submit">Enviar</button>
-  </form>
-</div>
-</body>
+        
+            <table class="table table-dark">
+                <thead>
+                <tr>
+                    <th scope="col">id</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">E-mail</th>
+                </tr>
+            </thead>
+                <tbody th:each="">
+                    <th scope="row" th:text=""></th>
+                    <td th:text=""></td>
+                    <td th:text=""></td>
+                    <td th:text=""></td>
+                    <td th:text=""></td>
+                    <td><a th:href=""><button class="btn btn-dark fa-solid fa-pen-to-square"></button></a></td>
+                    <td><a th:href=""><button class="btn btn-dark fa-solid fa-trash"></button></a></td>
+                </tr>
+
+                </tbody>
+            </table>
+        </div>
+
+    </body>
 </html>
