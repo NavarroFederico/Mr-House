@@ -1,95 +1,128 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Mr-House</title>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
-        <script src="https://kit.fontawesome.com/6dd88c038c.js" crossorigin="anonymous"></script>
-        <link rel="stylesheet" href="/css/estilos.css">
-        <link rel="icon" th:href="@{/img/Favicon.ico}">
-    </head>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mr-House</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/6dd88c038c.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/line-awesome/1.3.0/line-awesome/css/line-awesome.min.css" integrity="sha512-vebUliqxrVkBy3gucMhClmyQP9On/HAWQdKDXRaAlb/FKuTbxkjPKUyqVOxAcGwFDka79eTF+YXwfke1h3/wfg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="/css/estilos.css">
+    <link rel="icon" th:href="@{/img/Favicon.ico}">
+</head>
 
-    <body>
-        <nav class="navbar navbar-expand-lg">
-            <div class="container-fluid">
-                <a class="navbar-brand" th:href="@{/}">
-                    <img th:src="@{/img/Logo.png}" width="50px" height="50px" alt="Logo">
-                </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item dropdown">
-                            <a th:href="@{/propiedades/ventas.html}" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
-                                Ventas
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a th:href="@{/propiedades/casas}" class="dropdown-item" >Casas</a></li>
-                                <li><a th:href="@{/propiedades/departamentos}" class="dropdown-item" >Departamentos</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" th:href="@{/propiedades/alquileres.html}" role="button" data-bs-toggle="dropdown">
-                                Alquileres
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" th:href="@{/propiedades/casas-alquiler.html}">Casas</a></li>
-                                <li><a class="dropdown-item" th:href="@{/propiedades/departamentos-alquiler.html}">Departamentos</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" th:href="@{/inmobiliarias}">Inmobiliarias</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" th:href="@{/contacto}">Contacto</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" th:href="@{/tabla}">Tabla</a>
-                        </li>
-                    </ul>
-                    <a th:href="@{ingreso.html}"><button class="btn btn-dark">Ingresar</button></a>
+<body>
+  <nav class="navbar navbar-expand-lg">
+  <div class="container-fluid">
+   <a class="navbar-brand" th:href="@{/}">
+      <img th:src="@{/img/Logo.png}" width="50px" height="50px" alt="Logo">
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link text-dark" th:href="@{/propiedades}">Propiedades</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-dark" th:href="@{/inmobiliarias}">Inmobiliarias</a>
+            </li>
+        <li class="nav-item">
+          <a class="nav-link text-dark" th:href="@{/contacto}">Contacto</a>
+        </li>
+      </ul>
+      <a th:href="@{/ingresar}"><button class="btn btn-dark">Ingresar</button></a>
+      <a th:href="@{/ingresar}"><button class="btn btn-dark">Publicar</button></a>
+        <button class="btn btn-dark fa-solid fa-user dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false"></button>
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item" href="/perfil">Mi perfil</a></li>
+          <li><a class="dropdown-item" href="/logout">Cerrar sesion</a></li>
+        </ul>
+    </div>
+  </div>
+</nav>
+<br>
+    <h3 class="text-center">Seleccione el tipo de usuario</h3>
+    <br></br>
+    <div class="container text-center">
+      <div class="row">
+        <div class="col">
+          <input type="radio" class="btn-check" name="options-outlined" id="success-outlined" autocomplete="off">
+          <label class="btn btn-outline-dark" for="success-outlined">Cliente</label>
+        <p>Si quieres consultar acerca de un inmueble publicado o publicar un inmueble particular</p>
+        </div>
+        <div class="col">
+          <input type="radio" class="btn-check" name="options-outlined" id="danger-outlined" autocomplete="off">
+          <label class="btn btn-outline-dark" for="danger-outlined">Inmobiliaria</label>
+        <p>Si eres corredor inmobiliario y te gustaría publicar tus inmuebles</p>
+        </div>
+      </div>
+    </div>
+    <br>
+    <div class="text-center">
+      <a th:href="@{/registrar}"><button class="btn btn-dark align-middle">Registrar</button></a>
+    </div>
 
-                </div>
+
+    <form class="form" th:action="@{/registro}" method="POST" enctype="multipart/form-data">
+      <div class="form-group mb-3">
+        <h3 class="card-title">Registrate</h3>
+      </div>
+        <div class="form-group mb-3">
+            <input type="text" class="form-control" name="nombre" placeholder="Nombre completo" th:value="${nombre}">
+        </div>
+        <div class="form-group mb-3">
+            <input type="email" class="form-control" name="email" placeholder="Correo electronico" th:value="${email}">
+        </div>
+        <div class="form-group mb-3">
+            <input type="password" class="form-control" name="password" placeholder="Contraseña" th:value="${password}">
+        </div>
+        <div class="form-group mb-3">
+            <input type="password" class="form-control" name="password2" placeholder="Repetir contraseña" th:value="${password2}">
+        </div>
+        <div class="form-group mb-3">
+          <label>Foto de perfil (opcional): </label>
+            <input type="file" class="form-control" name="imagen">
+        </div>
+        <div>
+            <button type="submit" class="btn btn-dark mb-3">Registrarse</button>
+        </div>
+
+
+        <form th:action="@{/registro}" method="POST" enctype="multipart/form-data">
+          <div class="form-group mb-3">
+            <h3 class="card-title">Registrate</h3>
+          </div>
+            <div class="form-group mb-3">
+                <input type="text" class="form-control" name="nombre" placeholder="Nombre de la inmobiliaria" th:value="${nombre}">
             </div>
-        </nav>
-        <form th:action="@{/registro}" method="POST">
-            <div class="mb-3">
-                <label for="exampleInputEmail1" class="form-label">Ingrese su nombre</label>
-                <input type="text" class="form-control" id="exampleInputEmail1" name="nombre" th:value="${nombre}" aria-describedby="emailHelp">
+            <div class="form-group mb-3">
+              <select class="form-select" aria-label="Default select example">
+                <option selected>Provincia</option>
+                <option value="1">Buenos Aires</option>
+                <option value="2">Cordoba</option>
+                <option value="3">Mendoza</option>
+                <option value="3">Santa Fe</option>
+              </select>
             </div>
-            <div class="mb-3">
-                <label for="exampleInputEmail1" class="form-label">Ingrese su E-mail</label>
-                <input type="email" class="form-control" id="exampleInputEmail1" name="email" aria-describedby="emailHelp" th:value="${email}"
+            <div class="form-group mb-3">
+                <input type="email" class="form-control" name="email" placeholder="Correo electronico" th:value="${email}">
             </div>
-            <div class="mb-3">
-                <label for="exampleInputPassword1" class="form-label">Crear contraseña</label>
-                <input type="password" class="form-control" id="exampleInputPassword1" name="password" th:value="${password}">
+            <div class="form-group mb-3">
+                <input type="password" class="form-control" name="password" placeholder="Contraseña" th:value="${password}">
             </div>
-            <div class="mb-3">
-                <label for="exampleInputPassword1" class="form-label">Repetir contraseña</label>
-                <input type="password" class="form-control" id="exampleInputPassword1" name="password2" th:value="${password2}">
+            <div class="form-group mb-3">
+                <input type="password" class="form-control" name="password2" placeholder="Repetir contraseña" th:value="${password2}">
+            </div>
+            <div class="form-group mb-3">
+              <label>Logo de la inmobiliaria: </label>
+                <input type="file" class="form-control" name="imagen">
             </div>
             <div>
-                <button type="submit" class="btn btn-dark">Registrarse</button>
+                <button type="submit" class="btn btn-dark mb-3">Registrarse</button>
             </div>
-            
-            <div th:if="${error!=null}" class="card text-white bg-danger mb-3 mensajeError">
-                <div class="card-body">
-                    <h5 class="card-title">Error</h5>
-                    <p class="card-text" th:text="${error}"></p>
-                </div>
-            </div>
-            
-            <div th:if="${exito!=null}" class="card text-white bg-danger mb-3 mensajeExito">
-                <div class="card-body">
-                    <h5 class="card-title">Exito</h5>
-                    <p class="card-text" th:text="${exito}"></p>
-                </div>
-            </div>
-        </form>
     </body>
 </html>

@@ -38,16 +38,6 @@ public class PortalControlador {
         return "registro.html";
     }
 
-    @GetMapping("/registrarc")
-    public String registrarc() {
-        return "registroc.html";
-    }
-
-    @GetMapping("/registrari")
-    public String registrari() {
-        return "registroi.html";
-    }
-
     @PostMapping("/registro")
     public String registro(@RequestParam String nombre, @RequestParam String email, @RequestParam String password,
             @RequestParam String password2, ModelMap modelo, MultipartFile archivo) {
@@ -64,7 +54,8 @@ public class PortalControlador {
     }
 
     @GetMapping("/ingresar")
-    public String login(@RequestParam(required = false) String error, ModelMap modelo) {
+    public String login(@RequestParam(required = false) String error, ModelMap modelo
+    ) {
         if (error != null) {
             modelo.put("error", "Usuario o contraseña invalidas");
         }
@@ -96,4 +87,10 @@ public class PortalControlador {
     public String inmobiliarias() {
         return "inmobiliarias.html";
     }
+
+    @GetMapping("/perfil")
+    public String perfil() {
+        return "perfil.html";
+    }
+
 }
