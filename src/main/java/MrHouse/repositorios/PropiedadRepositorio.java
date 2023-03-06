@@ -6,7 +6,6 @@
 package MrHouse.repositorios;
 
 import MrHouse.entidades.Propiedad;
-import MrHouse.entidades.Propietario;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

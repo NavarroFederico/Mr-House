@@ -6,6 +6,7 @@
 package MrHouse.servicios;
 
 import MrHouse.entidades.Cliente;
+import MrHouse.entidades.Foto;
 import MrHouse.enumeraciones.Roles;
 import MrHouse.excepciones.MyException;
 import MrHouse.repositorios.ClienteRepositorio;
@@ -22,6 +23,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  *
@@ -32,10 +34,12 @@ public class ClienteServicios implements UserDetailsService {
 
     @Autowired
     ClienteRepositorio clienteRepositorio;
+    @Autowired
+    FotoServicios fotoservicios;
 
     //Crear Cliente
     @Transactional
-    public void registrar(String nombre, String email, String password, String password2) throws MyException {
+    public void registrar(MultipartFile archivo, String nombre, String email, String password, String password2) throws MyException {
 
         validar(nombre, email, password, password2);
 
@@ -43,9 +47,10 @@ public class ClienteServicios implements UserDetailsService {
         cliente.setNombre(nombre);
         cliente.setEmail(email);
         cliente.setPassword(new BCryptPasswordEncoder().encode(password));
-        
         cliente.setRol(Roles.INQUILINO);
-        
+        Foto foto = fotoservicios.save(archivo);
+        cliente.setImage(foto);
+
         clienteRepositorio.save(cliente);
     }
 
@@ -65,7 +70,7 @@ public class ClienteServicios implements UserDetailsService {
     }
 
     @Transactional
-    public void modificar(String id, String nombre, String email, String password, String password2) throws MyException {
+    public void modificar(MultipartFile archivo,String id, String nombre, String email, String password, String password2) throws MyException {
 
         validar(nombre, email, password, password2);
 
@@ -76,6 +81,12 @@ public class ClienteServicios implements UserDetailsService {
             cliente.setEmail(email);
             String encriptada = new BCryptPasswordEncoder().encode(password);
             cliente.setPassword(encriptada);
+            String idImagen = null;
+            if(cliente.getImage() != null){
+                idImagen = cliente.getImage().getId();
+            }
+            Foto foto = fotoservicios.update(archivo, idImagen);
+            cliente.setImage(foto);
 
             clienteRepositorio.save(cliente);
         } else {
@@ -113,4 +124,5 @@ public class ClienteServicios implements UserDetailsService {
             return null;
         }
     }
+
 }

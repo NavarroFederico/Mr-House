@@ -18,6 +18,9 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ClienteRepositorio extends  JpaRepository<Cliente, String> {
     
+    @Query("SELECT a FROM Cliente a WHERE a.id = :id")
+    public Cliente buscarPorID(@Param("id") String id);
+    
     @Query("SELECT u FROM Cliente u WHERE u.email = :email")
     
     public Cliente buscarPorEmail(@Param("email") String email); 

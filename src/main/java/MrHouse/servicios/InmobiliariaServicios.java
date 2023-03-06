@@ -6,6 +6,7 @@
 package MrHouse.servicios;
 
 
+import MrHouse.entidades.Foto;
 import MrHouse.entidades.Inmobiliaria;
 import MrHouse.enumeraciones.Roles;
 import MrHouse.excepciones.MyException;
@@ -42,7 +43,7 @@ public class InmobiliariaServicios implements UserDetailsService {
     private FotoServicios fotoServicios;
 
     @javax.transaction.Transactional
-    public void registrar(String nombre, String email, String password, String password2) throws MyException {
+    public void registrar(MultipartFile archivo,String nombre, String email, String password, String password2) throws MyException {
 
         validar(nombre, email, password, password2);
 
@@ -51,12 +52,14 @@ public class InmobiliariaServicios implements UserDetailsService {
         inmobiliaria.setEmail(email);
         inmobiliaria.setPassword(new BCryptPasswordEncoder().encode(password));
         inmobiliaria.setRol(Roles.PROPIETARIO);
+        Foto foto = fotoServicios.save(archivo);
+        inmobiliaria.setFoto(foto);
         inmobiliariaRepositorio.save(inmobiliaria);
 
     }
 
     @javax.transaction.Transactional
-    public void modificar(String id, String nombre, String email, String password, String password2) throws MyException {
+    public void modificar(MultipartFile archivo, String id, String nombre, String email, String password, String password2) throws MyException {
 
         validar(nombre, email, password, password2);
 
@@ -67,6 +70,12 @@ public class InmobiliariaServicios implements UserDetailsService {
             inmobiliaria.setEmail(email);
             String encriptada = new BCryptPasswordEncoder().encode(password);
             inmobiliaria.setPassword(encriptada);
+            String idImagen = null;
+            if(inmobiliaria.getFoto()!= null){
+                idImagen = inmobiliaria.getFoto().getId();
+            }
+            Foto foto = fotoServicios.update(archivo, idImagen);
+            inmobiliaria.setFoto(foto);
 
             inmobiliariaRepositorio.save(inmobiliaria);
         } else {

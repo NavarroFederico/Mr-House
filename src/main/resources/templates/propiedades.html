@@ -8,6 +8,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/6dd88c038c.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/line-awesome/1.3.0/line-awesome/css/line-awesome.min.css" integrity="sha512-vebUliqxrVkBy3gucMhClmyQP9On/HAWQdKDXRaAlb/FKuTbxkjPKUyqVOxAcGwFDka79eTF+YXwfke1h3/wfg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="/css/estilos.css">
     <link rel="icon" th:href="@{/img/Favicon.ico}">
 </head>
@@ -15,7 +16,7 @@
 <body>
   <nav class="navbar navbar-expand-lg">
   <div class="container-fluid">
-    <a class="navbar-brand" th:href="@{/index.html}">
+   <a class="navbar-brand" th:href="@{/}">
       <img th:src="@{/img/Logo.png}" width="50px" height="50px" alt="Logo">
     </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -23,39 +24,27 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item dropdown">
-          <a th:href="@{/propiedades/ventas.html}" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
-            Ventas
-          </a>
-          <ul class="dropdown-menu">
-            <li><a th:href="@{/propiedades/casas-venta.html}" class="dropdown-item" >Casas</a></li>
-            <li><a th:href="@{/propiedades/departamentos-ventas.html}" class="dropdown-item" >Departamentos</a></li>
-          </ul>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" th:href="@{/propiedades/alquileres.html}" role="button" data-bs-toggle="dropdown">
-            Alquileres
-          </a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" th:href="@{/propiedades/casas-alquiler.html}">Casas</a></li>
-            <li><a class="dropdown-item" th:href="@{/propiedades/departamentos-alquiler.html}">Departamentos</a></li>
-          </ul>
-        </li>
             <li class="nav-item">
-              <a class="nav-link text-dark" th:href="@{/inmobiliarias.html}">Inmobiliarias</a>
+              <a class="nav-link text-dark" th:href="@{/propiedades}">Propiedades</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-dark" th:href="@{/inmobiliarias}">Inmobiliarias</a>
             </li>
         <li class="nav-item">
-          <a class="nav-link text-dark" th:href="@{/contacto.html}">Contacto</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link text-dark" th:href="@{/tabla.html}">Tabla</a>
+          <a class="nav-link text-dark" th:href="@{/contacto}">Contacto</a>
         </li>
       </ul>
-      <a th:href="@{ingreso.html}"><button class="btn btn-dark">Ingresar</button></a>
-        
+      <a th:href="@{/ingresar}"><button class="btn btn-dark">Ingresar</button></a>
+      <a th:href="@{/ingresar}"><button class="btn btn-dark">Publicar</button></a>
+        <button class="btn btn-dark fa-solid fa-user dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false"></button>
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item" href="/perfil">Mi perfil</a></li>
+          <li><a class="dropdown-item" href="/logout">Cerrar sesion</a></li>
+        </ul>
     </div>
   </div>
 </nav>
-<h1 class="titulos">Departamentos en venta</h1>
+<br>
+    <h1 class="titulos">Propiedades</h1>
 </body>
 </html>

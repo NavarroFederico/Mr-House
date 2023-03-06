@@ -9,7 +9,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import org.hibernate.annotations.GenericGenerator;
@@ -28,9 +27,35 @@ public class Propiedad {
     private String id;
 
     @Column(unique = true)
-    private String habitaciones;
-    private String cantBanios;
+
+    private int propiedadTipo; //1=CASA 2=DEPARTAMENTO   
     private String m2;
+    private String habitaciones;
+    private String banos;
+    private boolean cochera;
+    private String direccion;
+    private String ciudad;
+    private String descripcion;
+
+    private boolean alta;
+
+    @OneToOne
+    private Foto foto;
+    @OneToOne
+    private Inmobiliaria inmobiliaria;
+    @OneToOne
+    private Propietario propietario;
+
+    public Propiedad() {
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public String getM2() {
         return m2;
@@ -40,29 +65,28 @@ public class Propiedad {
         this.m2 = m2;
     }
 
-    public String getCantBanios() {
-        return cantBanios;
+    public String getBanos() {
+        return banos;
     }
 
-    public void setCantBanios(String cantBanios) {
-        this.cantBanios = cantBanios;
-    }
-    private String direccion;
-    private String ciudad;
-
-    @OneToOne
-    private Foto foto;
-    @OneToOne
-    private Inmobiliaria inmobiliaria;
-    @OneToOne
-    private Propietario propietario;
-
-    public String getId() {
-        return id;
+    public void setBanos(String baños) {
+        this.banos = baños;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    public int getPropiedadTipo() {
+        return propiedadTipo;
+    }
+
+    public void setPropiedadTipo(int propiedadTipo) {
+        this.propiedadTipo = propiedadTipo;
     }
 
     public String getHabitaciones() {
@@ -111,5 +135,22 @@ public class Propiedad {
 
     public void setFoto(Foto foto) {
         this.foto = foto;
+    }
+
+
+    public boolean isCochera() {
+        return cochera;
+    }
+
+    public void setCochera(boolean cochera) {
+        this.cochera = cochera;
+    }
+
+    public boolean isAlta() {
+        return alta;
+    }
+
+    public void setAlta(boolean alta) {
+        this.alta = alta;
     }
 }
