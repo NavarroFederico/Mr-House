@@ -44,7 +44,28 @@
     </div>
   </div>
 </nav>
-<br>
-    <h1 class="titulos">Inmobiliarias</h1>
-</body>
+        
+            <table class="table table-dark">
+                <thead>
+                <tr>
+                    <th scope="col">id</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">E-mail</th>
+                </tr>
+            </thead>
+                <tbody th:each="">
+                    <th scope="row" th:text=""></th>
+                    <td th:text=""></td>
+                    <td th:text=""></td>
+                    <td th:text=""></td>
+                    <td th:text=""></td>
+                    <td><a th:href=""><button class="btn btn-dark fa-solid fa-pen-to-square"></button></a></td>
+                    <td><a th:href=""><button class="btn btn-dark fa-solid fa-trash"></button></a></td>
+                </tr>
+
+                </tbody>
+            </table>
+        </div>
+
+    </body>
 </html>

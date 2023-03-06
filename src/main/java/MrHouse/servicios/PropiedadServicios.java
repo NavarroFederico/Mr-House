@@ -6,16 +6,21 @@
 package MrHouse.servicios;
 
 import MrHouse.entidades.Propiedad;
+import MrHouse.entidades.Inmobiliaria;
+import MrHouse.entidades.Propiedad;
+import MrHouse.entidades.Propietario;
 import MrHouse.excepciones.MyException;
 import MrHouse.repositorios.PropiedadRepositorio;
 import java.util.Optional;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 /**
  *
  * @author facuq
  */
+@Service
 public class PropiedadServicios {
 
     @Autowired
@@ -57,10 +62,12 @@ public class PropiedadServicios {
             return op.get();
         } else {
             throw new MyException("No se encontró la propiedad solicitada.");
+
         }
     }
 
     @Transactional
+
     public void bajaPropiedad(Propiedad propiedad) throws MyException {
 
         Optional<Propiedad> op = propiedadRepositorio.findById(propiedad.getId());
@@ -73,7 +80,7 @@ public class PropiedadServicios {
     }
 
     @Transactional
-    public void altaLibro(Propiedad propiedad) throws MyException {
+    public void altaPropiedad(Propiedad propiedad) throws MyException {
 
         Optional<Propiedad> op = propiedadRepositorio.findById(propiedad.getId());
         if (op.isPresent()) {
