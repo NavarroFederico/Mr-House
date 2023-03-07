@@ -93,7 +93,19 @@ public class ClienteServicios implements UserDetailsService {
             throw new MyException("No se encontró el usuario solicitado");
         }
     }
-
+    
+     //Metodo para listar clientes
+    public List<Cliente> listarClientes() {
+        List<Cliente> clientes = new ArrayList();
+        clientes = clienteRepositorio.findAll();
+        return clientes;
+    }
+    
+     //Metodo GetOne para editar
+    public Cliente getOne(String id) {
+        return clienteRepositorio.getOne(id);
+    }
+   
     @Transactional
     public void eliminarCliente(String id) throws MyException {
         if (id == null || id.isEmpty()) {
