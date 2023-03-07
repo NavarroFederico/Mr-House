@@ -8,18 +8,20 @@
 }
 .nav-link:hover{
     text-decoration: overline underline solid red;
-
 }
 .container{
     background-color: beige;
     padding: 20px;
+}
+.perfil{
+    text-align: left;
+    margin: 50px;
 }
 /*contacto*/
 
 form {
     color: black;
     text-align: center;
-    font-weight: 100;
     padding: 20px;
 }
 
