@@ -34,9 +34,9 @@
           <a class="nav-link text-dark" th:href="@{/contacto}">Contacto</a>
         </li>
       </ul>
-      <a th:href="@{/ingresar}"><button class="btn btn-dark">Ingresar</button></a>
-      <a th:href="@{/ingresar}"><button class="btn btn-dark">Publicar</button></a>
-        <button class="btn btn-dark fa-solid fa-user dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false"></button>
+      <a th:href="@{/ingresar}"><button class="btn btn-dark"th:if ="${session.usuariosession ==null}">Ingresar</button></a>
+      <a th:href="@{/ingresar}"><button class="btn btn-dark" th:if ="${session.usuariosession !=null}" >Publicar</button></a>
+        <button class="btn btn-dark fa-solid fa-user dropdown-toggle" th:if ="${session.usuariosession !=null}" type="button" data-bs-toggle="dropdown" aria-expanded="false"></button>
         <ul class="dropdown-menu">
           <li><a class="dropdown-item" href="/perfil">Mi perfil</a></li>
           <li><a class="dropdown-item" href="/usuarios">Administrar usuarios</a></li>
