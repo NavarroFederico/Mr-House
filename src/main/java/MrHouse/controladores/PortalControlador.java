@@ -5,8 +5,10 @@
  */
 package MrHouse.controladores;
 
+import MrHouse.entidades.Cliente;
 import MrHouse.excepciones.MyException;
 import MrHouse.servicios.ClienteServicios;
+import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -64,13 +66,13 @@ public class PortalControlador {
 
     @PreAuthorize("hasAnyRole('ROLE_INQUILINO','ROLE_ADMIN','ROLE_PROPIETARIO','ROLE_INMOBILIARIA')")
     @GetMapping("/inicio")
-    public String inicio() {
-        return "inicio.html";
+    public String inicio(HttpSession session) {
+     Cliente logueado = (Cliente) session.getAttribute("usuariosession");
+     
+        if (logueado.getRol().toString().equals("ADMIN")){
+         return "redirect:/admin/dashboar";
     }
-
-    @GetMapping("/tabla")
-    public String tabla() {
-        return "tabla.html";
+        return "index.html";
     }
 
     @GetMapping("/contacto")
