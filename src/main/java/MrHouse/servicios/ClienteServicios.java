@@ -140,6 +140,7 @@ public class ClienteServicios implements UserDetailsService {
 
             HttpSession session = attr.getRequest().getSession(true);
             
+            session.setAttribute("usuariosession",cliente);
             
             return new User(cliente.getEmail(), cliente.getPassword(), permisos);
 
