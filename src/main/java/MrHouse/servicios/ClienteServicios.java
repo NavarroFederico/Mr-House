@@ -71,7 +71,7 @@ public class ClienteServicios implements UserDetailsService {
     }
 
     @Transactional
-    public void modificar(MultipartFile archivo,String id, String nombre, String email, String password, String password2) throws MyException {
+    public void modificar(String id, String nombre, String email, String password, String password2) throws MyException {
 
         validar(nombre, email, password, password2);
 
@@ -82,13 +82,14 @@ public class ClienteServicios implements UserDetailsService {
             cliente.setEmail(email);
             String encriptada = new BCryptPasswordEncoder().encode(password);
             cliente.setPassword(encriptada);
+            
+            /*
             String idImagen = null;
             if(cliente.getImage() != null){
                 idImagen = cliente.getImage().getId();
-            }
             Foto foto = fotoservicios.update(archivo, idImagen);
             cliente.setImage(foto);
-
+            */
             clienteRepositorio.save(cliente);
         } else {
             throw new MyException("No se encontró el usuario solicitado");
