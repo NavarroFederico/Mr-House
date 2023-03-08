@@ -1,10 +1,10 @@
-.navbar {
-    background-color: #FB6222;
-}
 .titulos{
     text-align: center;
     color: #FB6222;
     text-decoration: overline underline solid red;
+}
+.navbar {
+    background-color: #FB6222;
 }
 .nav-link:hover{
     text-decoration: overline underline solid red;
@@ -13,7 +13,7 @@
     margin: 5px;
 }
 .container{
-    background-color: beige;
+    background-color: #fff3cd;
     padding: 20px;
 }
 /*searchbar*/

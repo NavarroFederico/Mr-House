@@ -57,7 +57,7 @@ public class InmobiliariaServicios implements UserDetailsService {
 
     }
 
-    @javax.transaction.Transactional
+    @Transactional
     public void modificar(MultipartFile archivo, String id, String nombre, String email, String password, String password2) throws MyException {
 
         validar(nombre, email, password, password2);
