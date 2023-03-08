@@ -46,95 +46,80 @@
   </div>
 </nav>
         
-            <table class="table table-dark">
+            <table class="table table-warning">
                 <thead>
                 <tr>
-                    <th scope="col">Id</th>
+                    <th scope="col">ID</th>
                     <th scope="col">Nombre</th>
                     <th scope="col">E-mail</th>
 
                 </tr>
             </thead>
-                <tbody th:each="cliente : ${clientes}">
-                    <th scope="row" th:text="${cliente.id}"></th>
-                    <td th:text="${cliente.nombre}"></td>
-                    <td th:text="${cliente.email}"></td>
-                    <!--
-                    <td><a th:href=""><button class="btn btn-dark fa-solid fa-pen-to-square"></button></a></td>
-                    <td><a th:href=""><button class="btn btn-dark fa-solid fa-trash"></button></a></td>
-                    -->
+                <tbody th:each="">
+                    <th scope="row" th:text=""></th>
+                    <td th:text=""></td>
+                    <td th:text=""></td>
+                    <td th:text=""></td>
+                    <td th:text=""></td>
+                    <td><a th:href=""><button class="btn btn-dark fa-solid fa-pen-to-square" data-bs-toggle="modal" data-bs-target="#editar"></button></a></td>
+                    <td><a th:href=""><button class="btn btn-dark fa-solid fa-trash" data-bs-toggle="modal" data-bs-target="#eliminar"></button></a></td>
                 </tr>
 
                 </tbody>
             </table>
         </div>
-        
-        <form class="form" th:action="@{/registro}" method="POST" enctype="multipart/form-data">
-          <div class="form-group mb-3">
-            <h3 class="card-title">Editar perfil</h3>
-          </div>
-            <div class="form-group mb-3">
-              <label>Editar Nombre</label>
-                <input type="text" class="form-control" name="nombre" th:value="${nombre}">
-            </div>
-            <div class="form-group mb-3">
-              <label>Editar correo electronico</label>
-                <input type="email" class="form-control" name="email" th:value="${email}">
-            </div>
-            <div class="form-group mb-3">
-              <label>Editar contraseña</label>
-                <input type="password" class="form-control" name="password" th:value="${password}">
-            </div>
-            <div class="form-group mb-3">
-              <label>Confirmar contraseña</label>
-                <input type="password" class="form-control" name="password2" th:value="${password2}">
-            </div>
-            <div class="form-group mb-3">
-              <label>Editar foto de perfil</label>
-                <input type="file" class="form-control" name="imagen">
-            </div>
-            <div>
-                <button type="submit" class="btn btn-dark mb-3">Editar</button>
-            </div>
-    
-    
-            <form th:action="@{/registro}" method="POST" enctype="multipart/form-data">
-              <div class="form-group mb-3">
-                <h3 class="card-title">Editar Inmobiliaria</h3>
+
+
+        <div class="modal fade" id="editar" tabindex="-1" aria-labelledby="Label" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="Label">Editar</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
-                <div class="form-group mb-3">
-                  <label>Edita el nombre de la inmobiliaria</label>
-                    <input type="text" class="form-control" name="nombre" th:value="${nombre}">
-                </div>
-                <div class="form-group mb-3">
-                  <label>Edita provincia de origen</label>
-                  <select class="form-select" aria-label="Default select example">
-                    <option selected>Provincia</option>
-                    <option value="1">Buenos Aires</option>
-                    <option value="2">Cordoba</option>
-                    <option value="3">Mendoza</option>
-                    <option value="3">Santa Fe</option>
-                  </select>
-                </div>
-                <div class="form-group mb-3">
-                  <label>Editar correo electronico</label>
-                    <input type="email" class="form-control" name="email" th:value="${email}">
-                </div>
-                <div class="form-group mb-3">
-                  <label>Editar contraseña</label>
-                    <input type="password" class="form-control" name="password" th:value="${password}">
-                </div>
-                <div class="form-group mb-3">
-                  <label>Confirmar contraseña</label>
-                    <input type="password" class="form-control" name="password2" th:value="${password2}">
-                </div>
-                <div class="form-group mb-3">
-                  <label>Editar logo de la inmobiliaria</label>
-                    <input type="file" class="form-control" name="imagen">
-                </div>
-                <div>
-                    <button type="submit" class="btn btn-dark mb-3">Editar</button>
-                </div>
+              <div class="modal-body">
+                <form th:action="@{/registro}" method="POST" enctype="multipart/form-data">
+                  <div class="form-group mb-3">
+                    <h3 class="card-title">Editar usuario</h3>
+                    <div class="form-group mb-3">
+                      <label>Editar correo electronico</label>
+                        <input type="email" class="form-control" name="email" th:value="${email}">
+                    </div>
+                    <div class="form-group mb-3">
+                      <label>Editar contraseña</label>
+                        <input type="password" class="form-control" name="password" th:value="${password}">
+                    </div>
+                    <div class="form-group mb-3">
+                      <label>Confirmar contraseña</label>
+                        <input type="password" class="form-control" name="password2" th:value="${password2}">
+                    </div>
+                        <button type="submit" class="btn btn-dark mb-3">Editar</button>
+                    </div>
+                </form>
+            </div>
+          </div>
+        </div>
+        </div>
+
+
+<div class="modal fade" id="eliminar" tabindex="-1" aria-labelledby="Label" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="Label">Eliminar</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Confirmar eliminar usuario
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-danger">Eliminar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 
     </body>
 </html>
