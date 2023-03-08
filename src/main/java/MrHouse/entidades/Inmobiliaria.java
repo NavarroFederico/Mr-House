@@ -32,10 +32,16 @@ public class Inmobiliaria {
 
     @Column(unique = true)
     private String nombre;
-    private String ciudad;
+    private String provincia;
     private String descripcion;
     private String email;
     private String password;
+    @OneToOne
+    private Foto foto;
+    @OneToOne
+    private Propiedad propiedad;
+    @OneToOne
+    private Propietario propietario;
 
     public String getEmail() {
         return email;
@@ -71,16 +77,7 @@ public class Inmobiliaria {
         this.descripcion = descripcion;
     }
 
-    @OneToOne
-    private Foto foto;
-
-    @OneToOne
-    private Propiedad propiedad;
-
-    @OneToOne
-    private Propietario propietario;
-
-    public String getId() {
+        public String getId() {
         return id;
     }
 
@@ -96,12 +93,12 @@ public class Inmobiliaria {
         this.nombre = nombre;
     }
 
-    public String getCiudad() {
-        return ciudad;
+    public String getProvincia() {
+        return provincia;
     }
 
-    public void setCiudad(String ciudad) {
-        this.ciudad = ciudad;
+    public void setProvincia(String provincia) {
+        this.provincia = provincia;
     }
 
     public Propiedad getPropiedad() {

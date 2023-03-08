@@ -44,7 +44,7 @@ public class PortalControlador {
     public String registro(@RequestParam String nombre, @RequestParam String email, @RequestParam String password,
             @RequestParam String password2, ModelMap modelo, MultipartFile archivo) {
         try {
-            clienteServicios.registrar(archivo, nombre, email, password, password2);
+            clienteServicios.registrar(nombre, email, password, password2);
             modelo.put("exito", "Usuario registrado correctamente");
             return "index.html";
         } catch (MyException ex) {
@@ -70,7 +70,7 @@ public class PortalControlador {
      Cliente logueado = (Cliente) session.getAttribute("usuariosession");
      
         if (logueado.getRol().toString().equals("ADMIN")){
-         return "redirect:/admin/dashboar";
+         return "redirect:/admin/dashboard";
     }
         return "index.html";
     }

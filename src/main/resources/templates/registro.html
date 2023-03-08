@@ -55,7 +55,7 @@
         <p>Si quieres consultar acerca de un inmueble publicado o publicar un inmueble particular</p>
         </div>
         <div class="col">
-          <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#inmobiliaria">Inmobiliaria</button>
+          <button type="button" class="btn btn-dark" data-bs-toggle="modal" th:href="@{/inmobiliaria/registrar}" data-bs-target="#inmobiliaria">Inmobiliaria</button>
         <p>Si eres corredor inmobiliario y te gustaría publicar tus inmuebles</p>
         </div>
       </div>
@@ -87,7 +87,7 @@
                 </div>
                 <div class="form-group mb-3">
                   <label>Foto de perfil (opcional): </label>
-                    <input type="file" class="form-control" name="imagen">
+                    <input type="file" class="form-control" name="image" th:value="${image}">
                 </div>
                 <div>
                     <button type="submit" class="btn btn-dark mb-3">Registrarse</button>
@@ -106,7 +106,7 @@
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
-            <form th:action="@{/registro}" method="POST" enctype="multipart/form-data">
+            <form th:action="@{/inmobiliaria/registro}" method="POST" enctype="multipart/form-data">
               <div class="form-group mb-3">
                 <h3 class="card-title">Registrate</h3>
               </div>
@@ -114,7 +114,7 @@
                     <input type="text" class="form-control" name="nombre" placeholder="Nombre de la inmobiliaria" th:value="${nombre}">
                 </div>
                 <div class="form-group mb-3">
-                  <select class="form-select" aria-label="Default select example">
+                  <select class="form-select" th:value="${provincia}" aria-label="Default select example">
                     <option selected>Provincia</option>
                     <option value="1">Buenos Aires</option>
                     <option value="2">Cordoba</option>

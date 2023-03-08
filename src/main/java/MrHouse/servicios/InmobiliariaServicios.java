@@ -37,12 +37,9 @@ public class InmobiliariaServicios implements UserDetailsService {
     private InmobiliariaRepositorio inmobiliariaRepositorio;
 
     @Autowired
-    private ClienteServicios clienteServicios;
-
-    @Autowired
     private FotoServicios fotoServicios;
 
-    @javax.transaction.Transactional
+    @Transactional
     public void registrar(MultipartFile archivo,String nombre, String email, String password, String password2) throws MyException {
 
         validar(nombre, email, password, password2);
@@ -51,9 +48,11 @@ public class InmobiliariaServicios implements UserDetailsService {
         inmobiliaria.setNombre(nombre);
         inmobiliaria.setEmail(email);
         inmobiliaria.setPassword(new BCryptPasswordEncoder().encode(password));
-        inmobiliaria.setRol(Roles.PROPIETARIO);
+        inmobiliaria.setRol(Roles.INMOBILIARIA);
+        /*
         Foto foto = fotoServicios.save(archivo);
         inmobiliaria.setFoto(foto);
+        */
         inmobiliariaRepositorio.save(inmobiliaria);
 
     }
@@ -84,7 +83,7 @@ public class InmobiliariaServicios implements UserDetailsService {
         }
     }
 
-    @javax.transaction.Transactional
+    @Transactional
     public void eliminar(String id) throws MyException {
         if (id == null || id.isEmpty()) {
             throw new MyException("El id esta vacio o es nulo");

@@ -41,8 +41,9 @@ public class ClienteServicios implements UserDetailsService {
     FotoServicios fotoservicios;
 
     //Crear Cliente
+    //MultipartFile archivo como parametro fue eliminado solo para probar que funcione el programa
     @Transactional
-    public void registrar(MultipartFile archivo, String nombre, String email, String password, String password2) throws MyException {
+    public void registrar( String nombre, String email, String password, String password2) throws MyException {
 
         validar(nombre, email, password, password2);
 
@@ -51,8 +52,10 @@ public class ClienteServicios implements UserDetailsService {
         cliente.setEmail(email);
         cliente.setPassword(new BCryptPasswordEncoder().encode(password));
         cliente.setRol(Roles.INQUILINO);
+        /*
         Foto foto = fotoservicios.save(archivo);
         cliente.setImage(foto);
+         */
 
         clienteRepositorio.save(cliente);
     }
