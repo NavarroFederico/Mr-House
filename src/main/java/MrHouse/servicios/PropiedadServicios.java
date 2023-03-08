@@ -5,16 +5,16 @@
  */
 package MrHouse.servicios;
 
+import MrHouse.entidades.Foto;
 import MrHouse.entidades.Propiedad;
-import MrHouse.entidades.Inmobiliaria;
-import MrHouse.entidades.Propiedad;
-import MrHouse.entidades.Propietario;
 import MrHouse.excepciones.MyException;
 import MrHouse.repositorios.PropiedadRepositorio;
+import java.util.List;
 import java.util.Optional;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  *
@@ -25,9 +25,12 @@ public class PropiedadServicios {
 
     @Autowired
     PropiedadRepositorio propiedadRepositorio;
+    
+    @Autowired
+    private FotoServicios fotoServicios;
 
     @Transactional
-    public void registrar(Propiedad propiedadV) throws MyException {
+    public void registrar(MultipartFile archivo, Propiedad propiedadV) throws MyException {
         //P=PERSISTIR V=VALIDAR
         Propiedad propiedadP = validar(propiedadV);
 
@@ -40,16 +43,24 @@ public class PropiedadServicios {
         propiedadP.setCiudad(propiedadP.getCiudad());
         propiedadP.setDescripcion(propiedadP.getDescripcion());
         propiedadP.setInmobiliaria(propiedadP.getInmobiliaria());
+        Foto foto = fotoServicios.save(archivo);
+        propiedadP.setFoto(foto);
         propiedadRepositorio.save(propiedadP);
     }
 
     //PropiedadP = propiedad persistida  PropiedadC = nuevos cambios
     @Transactional
-    public void modificar(Propiedad propiedadC) throws MyException {
+    public void modificar(MultipartFile archivo, Propiedad propiedadC) throws MyException {
         try {
             Propiedad propiedadP = validarCambios(propiedadC, buscarPorId(propiedadC.getId()));
-
+            
+            if (archivo != null && !archivo.isEmpty())
+            {
+                propiedadP.setFoto(fotoServicios.save(archivo));
+            }
+            
             propiedadRepositorio.save(propiedadP);
+            
         } catch (MyException e) {
             throw new MyException("No se editó la propiedad");
         }
@@ -64,6 +75,16 @@ public class PropiedadServicios {
             throw new MyException("No se encontró la propiedad solicitada.");
 
         }
+    }
+    
+    @Transactional
+    public List<Propiedad> buscarPorCiudad(String ciudad) {
+        return propiedadRepositorio.buscarPorCiudad(ciudad);
+    }
+    
+    @Transactional
+    public List<Propiedad> listaActivos(String activos) {
+        return propiedadRepositorio.buscaActivos(activos);
     }
 
     @Transactional
@@ -88,6 +109,7 @@ public class PropiedadServicios {
             aux.setAlta(Boolean.TRUE);
             propiedadRepositorio.save(aux);
         }
+        
     }
 
     @Transactional
