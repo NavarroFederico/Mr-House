@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  *
@@ -43,17 +44,18 @@ public class AdminControlador {
 
     @GetMapping("/editarCliente/{id}")
     public String editar(@PathVariable String id , ModelMap modelo) {
-        modelo.put("Cliente", clienteServicios.getOne(id));
-        return "usuarios.html";
+        modelo.put("cliente", clienteServicios.getOne(id));
+        return "editar.html";
     }
+    
     @PostMapping("/editarCliente/{id}")
-    public String modificar(@PathVariable String id , String nombre ,  String email , String password,String password2, ModelMap modelo){
+    public String modificar(@PathVariable String id , String nombre ,  String email , String password,String password2,MultipartFile archivo, ModelMap modelo){
         try {
-            clienteServicios.modificar(id, nombre, email, password, password2);
+            clienteServicios.modificar(archivo, id, nombre, email, password, password2);
             return "redirect:../usuarios";
-        } catch (MyException ex) {
+            } catch (MyException ex) {
             modelo.put("error!", ex.getMessage());
-            return "usuarios.html";
+            return "editar.html";
         }
     }
 

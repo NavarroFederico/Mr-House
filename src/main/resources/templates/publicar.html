@@ -48,13 +48,13 @@
 <h3 class="text-center">Publique su inmueble</h3>
 <form class="form" th:action="@{/registro}" method="POST" enctype="multipart/form-data">
       <div class="form-group mb-3">
-          <input type="text" class="form-control" name="metros" placeholder="Metros cuadrados" th:value="">
+          <input type="text" class="form-control" name="metros" placeholder="Metros cuadrados">
       </div>
       <div class="form-group mb-3">
-        <input type="text" class="form-control" name="nombre" placeholder="Cant. Habitaciones" th:value="">
+        <input type="text" class="form-control" name="nombre" placeholder="Cant. Habitaciones" >
       </div>
       <div class="form-group mb-3">
-        <input type="text" class="form-control" name="nombre" placeholder="Cant. baños" th:value="">
+        <input type="text" class="form-control" name="nombre" placeholder="Cant. baños">
       </div>
       <div class="form-group mb-3">
         <select class="form-select" aria-label="Default select example">
@@ -65,7 +65,7 @@
       </div>
       <div class="form-group mb-3">
         <label>Foto del inmueble </label>
-          <input type="file" class="form-control" name="imagen">
+          <input type="file" class="form-control" name="archivo" >
       </div>
       <div class="form-group mb-3">
         <textarea rows="10" class="form-control" placeholder="Descripcion"></textarea>

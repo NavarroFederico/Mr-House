@@ -52,6 +52,8 @@
                     <th scope="col">ID</th>
                     <th scope="col">Nombre</th>
                     <th scope="col">E-mail</th>
+                    <th scope="col">Foto</th>
+                    
 
                 </tr>
             </thead>
@@ -60,11 +62,10 @@
                     <th scope="row" th:text="${cliente.id}"></th>
                     <td th:text="${cliente.nombre}"></td>
                     <td th:text="${cliente.email}"></td>
-
-
-
-                    <td><a><button class="btn btn-dark fa-solid fa-pen-to-square" data-bs-toggle="modal" data-bs-target="#editar"></button></a></td>
-                    <td><a><button class="btn btn-dark fa-solid fa-trash" data-bs-toggle="modal" data-bs-target="#eliminar"></button></a></td>
+                    <td <img th:src="${cliente.image}" width="50px" height="50px"></img> </td>
+                    
+                    <td><a th:href="@{/admin/editarCliente/__${cliente.id}__}"><button  class="btn btn-dark fa-solid fa-pen-to-square" ></button></a></td>
+                    <td><button class="btn btn-dark fa-solid fa-trash" data-bs-toggle="modal" data-bs-target="#eliminar"></button></td>
 
                 </tr>
 
@@ -72,7 +73,7 @@
         </table>
 
 
-
+    <!--
     <div class="modal fade" id="editar" tabindex="-1" aria-labelledby="Label" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -107,6 +108,7 @@
             </div>
         </div>
     </div>
+    -->
 
 
 
