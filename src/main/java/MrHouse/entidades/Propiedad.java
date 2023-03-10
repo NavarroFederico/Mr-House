@@ -28,7 +28,8 @@ public class Propiedad {
 
     @Column(unique = true)
 
-    private int propiedadTipo; //1=CASA 2=DEPARTAMENTO   
+    private String precio;
+    private String propiedadTipo; //1=CASA 2=DEPARTAMENTO   
     private String m2;
     private String habitaciones;
     private String banos;
@@ -56,6 +57,14 @@ public class Propiedad {
     public void setId(String id) {
         this.id = id;
     }
+    
+    public String getPrecio() {
+        return precio;
+    }
+
+    public void setPrecio(String precio) {
+        this.precio = precio;
+    }
 
     public String getM2() {
         return m2;
@@ -81,11 +90,11 @@ public class Propiedad {
         this.descripcion = descripcion;
     }
 
-    public int getPropiedadTipo() {
+    public String getPropiedadTipo() {
         return propiedadTipo;
     }
 
-    public void setPropiedadTipo(int propiedadTipo) {
+    public void setPropiedadTipo(String propiedadTipo) {
         this.propiedadTipo = propiedadTipo;
     }
 
