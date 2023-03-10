@@ -9,6 +9,7 @@ import MrHouse.entidades.Foto;
 import MrHouse.excepciones.MyException;
 import MrHouse.repositorios.FotoRepositorio;
 import java.io.IOException;
+import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,9 +31,9 @@ public class FotoServicios {
         validar(file);
         try {
             Foto foto = new Foto();
-            foto.setDatos(file.getBytes());
             foto.setMime(file.getContentType());
             foto.setNombre(file.getName());
+            foto.setContenido(file.getBytes());
             return fotoRepositorio.save(foto);
 
         } catch (IOException ioe) {
@@ -43,19 +44,33 @@ public class FotoServicios {
 
     @Transactional
     public Foto update(MultipartFile file, String idImagen) throws MyException {
-        validar(file);
+        if (file != null) {
+            try {
 
-        try {
-            Foto foto = getImage(idImagen);
-            foto.setDatos(file.getBytes());
-            foto.setMime(file.getContentType());
-            foto.setNombre(file.getName());
-            return fotoRepositorio.save(foto);
+                Foto foto = new Foto();
 
-        } catch (IOException ioe) {
-            System.err.println(ioe.getMessage());
-            return null;
+                if (idImagen != null) {
+                    Optional<Foto> respuesta = fotoRepositorio.findById(idImagen);
+
+                    if (respuesta.isPresent()) {
+                        foto = respuesta.get();
+                    }
+                }
+
+                foto.setMime(file.getContentType());
+
+                foto.setNombre(file.getName());
+
+                foto.setContenido(file.getBytes());
+
+                return fotoRepositorio.save(foto);
+
+            } catch (Exception e) {
+                System.err.println(e.getMessage());
+            }
         }
+        return null;
+
     }
 
     private void validar(MultipartFile file) throws MyException {
@@ -65,15 +80,7 @@ public class FotoServicios {
     }
 
     @Transactional(readOnly = true)
-    public Foto getImage(String id) throws MyException {
-        if (null == id || id.isEmpty()) {
-            throw new MyException("El ID no es válido.");
-        }
-
-        Optional<Foto> foto = fotoRepositorio.findById(id);
-        if (!foto.isPresent()) {
-            throw new MyException("No se ha encontrado la imágen.");
-        }
-        return foto.get();
+    public List<Foto> listarTodos() {
+        return fotoRepositorio.findAll();
     }
 }

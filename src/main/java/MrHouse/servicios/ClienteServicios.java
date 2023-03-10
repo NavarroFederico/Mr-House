@@ -41,6 +41,7 @@ public class ClienteServicios implements UserDetailsService {
     FotoServicios fotoservicios;
 
     //Crear Cliente
+    //MultipartFile archivo como parametro fue eliminado solo para probar que funcione el programa
     @Transactional
     public void registrar(MultipartFile archivo, String nombre, String email, String password, String password2) throws MyException {
 
@@ -53,7 +54,7 @@ public class ClienteServicios implements UserDetailsService {
         cliente.setRol(Roles.INQUILINO);
         Foto foto = fotoservicios.save(archivo);
         cliente.setImage(foto);
-
+        
         clienteRepositorio.save(cliente);
     }
 
@@ -71,9 +72,9 @@ public class ClienteServicios implements UserDetailsService {
             throw new MyException("Las contraseñas deben ser iguales");
         }
     }
-
+//se borrro parametro Multipart
     @Transactional
-    public void modificar(MultipartFile archivo,String id, String nombre, String email, String password, String password2) throws MyException {
+    public void modificar(MultipartFile archivo, String id, String nombre, String email, String password, String password2) throws MyException {
 
         validar(nombre, email, password, password2);
 
@@ -83,7 +84,7 @@ public class ClienteServicios implements UserDetailsService {
             cliente.setNombre(nombre);
             cliente.setEmail(email);
             String encriptada = new BCryptPasswordEncoder().encode(password);
-            cliente.setPassword(encriptada);
+            cliente.setPassword(encriptada);            
             String idImagen = null;
             if(cliente.getImage() != null){
                 idImagen = cliente.getImage().getId();
@@ -137,6 +138,7 @@ public class ClienteServicios implements UserDetailsService {
 
             HttpSession session = attr.getRequest().getSession(true);
             
+            session.setAttribute("usuariosession",cliente);
             
             return new User(cliente.getEmail(), cliente.getPassword(), permisos);
 

@@ -46,29 +46,52 @@
   </div>
 </nav>
 <h3 class="text-center">Publique su inmueble</h3>
-<form class="form" th:action="@{/registro}" method="POST" enctype="multipart/form-data">
+<form class="form" th:action="@{/propiedades/publicado}" method="POST" enctype="multipart/form-data">
       <div class="form-group mb-3">
-          <input type="text" class="form-control" name="metros" placeholder="Metros cuadrados" th:value="">
+          <input type="text" class="form-control" name="precio" placeholder="Precio" th:value="${precio}">
       </div>
       <div class="form-group mb-3">
-        <input type="text" class="form-control" name="nombre" placeholder="Cant. Habitaciones" th:value="">
-      </div>
-      <div class="form-group mb-3">
-        <input type="text" class="form-control" name="nombre" placeholder="Cant. baños" th:value="">
-      </div>
-      <div class="form-group mb-3">
-        <select class="form-select" aria-label="Default select example">
-          <option selected>Cochera</option>
-          <option value="1">Si</option>
-          <option value="2">No</option>
+        <select class="form-select" th:value="${propiedadTipo}" aria-label="Default select example">
+          <option selected>Tipo de propiedad</option>
+          <option value="1">Casa</option>
+          <option value="2">Departamento</option>
+          <option value="3">Lote</option>
         </select>
       </div>
       <div class="form-group mb-3">
-        <label>Foto del inmueble </label>
-          <input type="file" class="form-control" name="imagen">
+          <input type="text" class="form-control" name="m2" placeholder="Metros cuadrados" th:value="${m2}">
       </div>
       <div class="form-group mb-3">
-        <textarea rows="10" class="form-control" placeholder="Descripcion"></textarea>
+        <input type="text" class="form-control" name="habitaciones" placeholder="Cant. Habitaciones" th:value="${habitaciones}">
+      </div>
+      <div class="form-group mb-3">
+        <input type="text" class="form-control" name="banos" placeholder="Cant. baños" th:value="${banos}">
+      </div>
+      <div class="form-group mb-3">
+        <select class="form-select" th:value="${cochera}" aria-label="Default select example">
+          <option selected>Cochera</option>
+          <option value="true">Si</option>
+          <option value="false">No</option>
+        </select>
+          </div>
+    <div class="form-group mb-3">
+                  <select class="form-select" th:value="${ciudad}" aria-label="Default select example">
+                    <option selected>Provincia</option>
+                    <option value="Buenos Aires">Buenos Aires</option>
+                    <option value="Córdoba">Cordoba</option>
+                    <option value="Mendoza">Mendoza</option>
+                    <option value="Santa Fe">Santa Fe</option>
+                  </select>
+                </div>
+      <div class="form-group mb-3">
+        <input type="text" class="form-control" name="direccion" placeholder="Dirección" th:value="${direccion}">
+      </div>    
+      <div class="form-group mb-3">
+        <label>Foto del inmueble </label>
+          <input type="file" class="form-control" name="archivo" th:value="${image}">
+      </div>
+      <div class="form-group mb-3">
+        <textarea rows="10" class="form-control" placeholder="Descripcion" th:value="${descripcion}"></textarea>
       </div>
       <div>
           <button type="submit" class="btn btn-dark mb-3">Publicar</button>
