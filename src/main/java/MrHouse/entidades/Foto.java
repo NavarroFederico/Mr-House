@@ -5,13 +5,14 @@
  */
 package MrHouse.entidades;
 
-import javax.persistence.Column;
+import javax.persistence.Basic;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.Table;
+import org.hibernate.annotations.GenericGenerator;
 
 /**
  *
@@ -22,17 +23,20 @@ import javax.persistence.Table;
 public class Foto {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(generator = "uuid")
+    @GenericGenerator(name = "uuid", strategy = "uuid2")
     private String id;
-    
-    @Column(nullable = false)
-    private String nombre;
-    
+
     private String mime;
-    
+
+    private String nombre;
+
     @Lob
-    @Column(nullable = false)
-    private byte[] datos;
+    @Basic(fetch = FetchType.LAZY)
+    private byte[] contenido;
+
+    public Foto() {
+    }
 
     public String getId() {
         return id;
@@ -40,6 +44,14 @@ public class Foto {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getMime() {
+        return mime;
+    }
+
+    public void setMime(String mime) {
+        this.mime = mime;
     }
 
     public String getNombre() {
@@ -50,20 +62,12 @@ public class Foto {
         this.nombre = nombre;
     }
 
-    public byte[] getDatos() {
-        return datos;
+    public byte[] getContenido() {
+        return contenido;
     }
 
-    public void setDatos(byte[] datos) {
-        this.datos = datos;
+    public void setContenido(byte[] contenido) {
+        this.contenido = contenido;
     }
 
-    public String getMime() {
-        return mime;
-    }
-
-    public void setMime(String mime) {
-        this.mime = mime;
-    }
-    
 }

@@ -59,7 +59,7 @@ public class InmobiliariaControlador {
     @PreAuthorize("hasAnyRole('ROLE_INQUILINO','ROLE_ADMIN','ROLE_PROPIETARIO','ROLE_INMOBILIARIA')")
     @GetMapping("/inicio")
     public String inicio() {
-        return "inicio.html";
+        return "index.html";
     }
 
 }
