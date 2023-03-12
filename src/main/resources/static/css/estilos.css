@@ -1,0 +1,45 @@
+.titulos{
+    text-align: center;
+    color: #FB6222;
+    text-decoration: overline underline solid red;
+}
+.navbar {
+    background-color: #FB6222;
+}
+.nav-link:hover{
+    text-decoration: overline underline solid red;
+}
+.navboton{
+    margin: 5px;
+}
+.container{
+    background-color: #fff3cd;
+    padding: 20px;
+}
+/*searchbar*/
+.searchbar{
+    margin: 50px;
+    background-color: red;
+}
+select{
+    margin: 5px;
+}
+
+/*perfil*/
+.perfil{
+    text-align: left;
+    margin: 50px;
+}
+/*contacto*/
+
+form {
+    color: black;
+    text-align: center;
+    padding: 20px;
+}
+
+.form {
+    background-color: #fff3cd;
+    border: 2px solid ;
+    margin: 50px;
+}
